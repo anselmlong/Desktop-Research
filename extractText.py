@@ -1,4 +1,5 @@
 import requests
+import sys
 from bs4 import BeautifulSoup
 import vertexai
 from vertexai.generative_models import GenerativeModel
@@ -16,7 +17,7 @@ applicability to Singapore. Summarize the following texts while keeping in mind 
 as I plan to copy the content to a Google 
 Document."""
 
-query = 'applications vertex ai gemini nano singapore use cases case study'
+query = ' '.join(sys.argv[1:]) if len(sys.argv) > 0 else """gemini vertex ai use cases case study singapore"""
 
 chat.send_message(initialPrompt, stream=True)
 

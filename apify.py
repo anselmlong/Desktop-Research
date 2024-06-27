@@ -1,5 +1,6 @@
 from apify_client import ApifyClient
 from bs4 import BeautifulSoup
+import sys
 import requests
 import vertexai
 from vertexai.generative_models import GenerativeModel
@@ -12,7 +13,6 @@ vertexai.init(project=project_id, location="us-central1")
 
 model = GenerativeModel(model_name="gemini-1.0-pro")
 
-
 # Initialize the ApifyClient with your API token
 client = ApifyClient("apify_api_mng3qXg5oUW4rbFeuh0oJi9KBTfRGn0bNYda")
 
@@ -20,7 +20,7 @@ def getURLsFromQuery(query):
     # Prepare the Actor input
     run_input = {
         "queries": query,
-        "resultsPerPage": 10,
+        "resultsPerPage": results_per_page,
         "maxPagesPerQuery": 1,
         "languageCode": "",
         "mobileResults": False,
@@ -38,8 +38,6 @@ def getURLsFromQuery(query):
 
     return [result["url"] for result in data[0]["organicResults"]]
 
-queries = """gemini vertex ai use cases case study singapore"""
-
 # Function to extract text from a URL
 def extract_text_from_url(url):
     try:
@@ -49,9 +47,11 @@ def extract_text_from_url(url):
     except Exception as e:
         return f"Error extracting text from {url}: {e}"
 
-
 def openURLs(urls):
     for url in urls:
         print('Opening', url)
         webbrowser.open(url)
 
+queries = ' '.join(sys.argv[2:]) if len(sys.argv) > 0 else """gemini vertex ai use cases case study singapore"""
+results_per_page = int(sys.argv[1]) if len(sys.argv) > 1 else 10
+openURLs(getURLsFromQuery(queries))
