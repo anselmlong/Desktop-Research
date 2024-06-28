@@ -57,6 +57,6 @@ def openURLs(urls):
         print('Opening', url)
         webbrowser.open(url)
 
-queries = ' '.join(sys.argv[2:]) if len(sys.argv) > 0 else """gemini vertex ai use cases case study singapore"""
+query = ' '.join(sys.argv[2:]) if len(sys.argv) > 1 else sys.exit("Please provide a number and query in the format 'python openURLs.py <number> <query>'. ")
 results_per_page = int(sys.argv[1]) if len(sys.argv) > 1 else 10
 openURLs(getURLsFromQuery(queries))
