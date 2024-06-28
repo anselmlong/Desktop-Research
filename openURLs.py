@@ -59,4 +59,4 @@ def openURLs(urls):
 
 query = ' '.join(sys.argv[2:]) if len(sys.argv) > 1 else sys.exit("Please provide a number and query in the format 'python openURLs.py <number> <query>'. ")
 results_per_page = int(sys.argv[1]) if len(sys.argv) > 1 else 10
-openURLs(getURLsFromQuery(queries))
+openURLs(getURLsFromQuery(query))
