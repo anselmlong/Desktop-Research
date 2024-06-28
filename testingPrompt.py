@@ -1,8 +1,9 @@
 import vertexai
 from vertexai.generative_models import GenerativeModel
+import os
 
 # TODO(developer): Update and un-comment below line
-project_id = "radiant-snow-426403-b4"
+project_id = os.getenv("PROJECT_ID") 
 
 vertexai.init(project=project_id, location="us-central1")
 

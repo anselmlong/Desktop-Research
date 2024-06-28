@@ -1,4 +1,6 @@
 from apify_client import ApifyClient
+from dotenv import load_dotenv
+import os
 from bs4 import BeautifulSoup
 import sys
 import requests
@@ -6,15 +8,18 @@ import vertexai
 from vertexai.generative_models import GenerativeModel
 import webbrowser
 
-# TODO(developer): Update and un-comment below line
-project_id = "radiant-snow-426403-b4"
+# Load environment variables from .env file
+load_dotenv()
 
-vertexai.init(project=project_id, location="us-central1")
+APIFY_TOKEN = os.getenv("APIFY_API_TOKEN")
+PROJECT_ID = os.getenv("PROJECT_ID")
+
+vertexai.init(project= PROJECT_ID, location="us-central1")
 
 model = GenerativeModel(model_name="gemini-1.0-pro")
 
 # Initialize the ApifyClient with your API token
-client = ApifyClient("apify_api_mng3qXg5oUW4rbFeuh0oJi9KBTfRGn0bNYda")
+client = ApifyClient(APIFY_TOKEN)
 
 def getURLsFromQuery(query):
     # Prepare the Actor input
