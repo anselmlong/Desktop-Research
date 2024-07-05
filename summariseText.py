@@ -100,7 +100,7 @@ urls = getURLsFromQuery(query)
 for url in urls:
     print("Extracting text from", url)
     extracted_text = extract_text_from_url(url)
-    summarized_text = invoke("Summarise this: " + extracted_text)
+    summarized_text = invoke(extracted_text)
     write_text_to_file(summarized_text)
 
 print("Text extraction and summarization completed.")
