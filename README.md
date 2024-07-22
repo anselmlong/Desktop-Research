@@ -16,3 +16,8 @@ To run this project, you'll need to set up some environment variables. Here's ho
 - Replace number with the number of results, and the query with your query.
 2. If you want a summarised report of the search query - run `python summariseText.py <number> <query>`
   (Might not really work)
+
+## Picture
+![image](https://github.com/user-attachments/assets/2a2fbfcd-0ca0-4878-88ca-d9eab1afd7c0)
+
+You should get this at the end!
